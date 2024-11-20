@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: mcr.microsoft.com/dotnet/core/aspnet:3.1
+          image: mcr.microsoft.com/dotnet/samples:aspnetapp
           ports:
             - containerPort: 80
           env:
