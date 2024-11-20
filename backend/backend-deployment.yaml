@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: mcr.microsoft.com/dotnet/samples:aspnetapp
+          image: dsmarkromero/sigemad-backend:latest
           ports:
             - containerPort: 80
           env:
