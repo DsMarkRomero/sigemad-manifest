@@ -21,5 +21,3 @@ spec:
           env:
           - name: ASPNETCORE_ENVIRONMENT
             value: "Production"
-          - name: ConnectionStrings__PrimeNumberDB
-            value: "Server=mssql-service;Database=PrimeNumberDB;User ID=sa;Password=SQLtest1;TrustServerCertificate=True;"
