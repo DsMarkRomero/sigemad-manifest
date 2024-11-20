@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: dsmarkromero/sigemad-frontend:latest
+          image: dsmarkromero/sigemad-frontend:lates
           ports:
             - containerPort: 80
           #volumeMounts:
