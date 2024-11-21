@@ -9,21 +9,21 @@ spec:
   rules:
     - http:
         paths:
-          - path: /api(/|$)(.*)
+          - path: /api
             pathType: Prefix
             backend:
               service:
                 name: svc-backend
                 port:
                   number: 8080
-          - path: /geoserver(/|$)(.*)
+          - path: /geoserver
             pathType: Prefix
             backend:
               service:
                 name: svc-geoserver
                 port:
                   number: 8080
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
