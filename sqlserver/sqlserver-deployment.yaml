@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: sqlserver
-          image: mcr.microsoft.com/mssql/server:2017-latest
+          image: mcr.microsoft.com/mssql/server:2022-latest
           ports:
             - containerPort: 1433
               name: sql
@@ -31,20 +31,7 @@ spec:
           volumeMounts:
             - name: mssql-data
               mountPath: /var/opt/mssql
-            - name: backup-files
-              mountPath: /var/opt/mssql/backup
-  volumeClaimTemplates:
-    - metadata:
-        name: mssql-data
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 500Mi
-    - metadata:
-        name: backup-files
-      spec:
-        accessModes: ["ReadOnlyMany"]
-        resources:
-          requests:
-            storage: 500Mi
+      volumes:
+        - name: mssql-data
+          persistentVolumeClaim:
+            claimName: pvc-sqlserver
