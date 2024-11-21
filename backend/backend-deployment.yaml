@@ -21,3 +21,5 @@ spec:
           env:
           - name: ASPNETCORE_ENVIRONMENT
             value: "Production"
+          - name: ASPNETCORE_URLS
+            value: "http://+:8080"
