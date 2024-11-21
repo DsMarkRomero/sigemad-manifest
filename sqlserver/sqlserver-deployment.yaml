@@ -1,9 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: sqlserver
   namespace: ns-sigemad
 spec:
+  serviceName: sqlserver
   replicas: 1
   selector:
     matchLabels:
@@ -18,6 +19,7 @@ spec:
           image: mcr.microsoft.com/mssql/server:2017-latest
           ports:
             - containerPort: 1433
+              name: sql
           env:
             - name: ACCEPT_EULA
               value: "Y"
@@ -29,7 +31,20 @@ spec:
           volumeMounts:
             - name: mssql-data
               mountPath: /var/opt/mssql
-      volumes:
-        - name: mssql-data
-          persistentVolumeClaim:
-            claimName: pvc-sqlserver
+            - name: backup-files
+              mountPath: /var/opt/mssql/backup
+  volumeClaimTemplates:
+    - metadata:
+        name: mssql-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 500Mi
+    - metadata:
+        name: backup-files
+      spec:
+        accessModes: ["ReadOnlyMany"]
+        resources:
+          requests:
+            storage: 500Mi
